@@ -1,4 +1,3 @@
-
 # Tipsy the AI Cocktail Maker Project
 
 This project is a multi-part cocktail maker system designed to run on a Raspberry Pi. It integrates three separate modules:
@@ -36,41 +35,6 @@ This project is a multi-part cocktail maker system designed to run on a Raspberr
 
 ---
 
-## File Structure
-
-- **app.py:**  
-  Streamlit-based user interface for configuration and recipe management.
-
-- **interface.py:**  
-  Pygame full-screen interface for cocktail selection and mode (single/double) using swipe and click gestures.
-
-- **controller.py:**  
-  Reads cocktail and pump configurations, then controls the pumps via Raspberry Pi GPIO based on the selected cocktail.
-
-- **main.py:**  
-  (Optional) A launcher that runs both the Streamlit app and Pygame interface concurrently.
-
-- **pump_config.json:**  
-  JSON file mapping pump numbers to ingredients.
-
-- **cocktails.json:**  
-  JSON file containing generated cocktail recipes.
-
-- **selected_cocktail.txt & selected_mode.txt:**  
-  Files written by the interface to communicate the selected cocktail and drink mode to the controller.
-
-- **.env:**  
-  File for storing environment variables (like the OpenAI API key).
-
-- **Image Assets:**  
-  - `tipsy.png`: Background image for the Pygame interface.  
-  - `drink_logos/`: Folder containing cocktail logo images (PNG).  
-  - `single.png` and `double.png`: Logos for selecting drink mode.  
-  - `pouring.png`: Full-screen overlay image for when the drink is pouring.  
-  - `loading.png`: A 720×720 loading image that spins during the pouring sequence.
-
----
-
 ## Hardware Requirements
 
 - **Raspberry Pi (any recent model)**  
@@ -94,6 +58,15 @@ This project is a multi-part cocktail maker system designed to run on a Raspberr
 
 - **Touchscreen or Mouse** for interacting with the Pygame interface
 
+### PCB Files
+
+The project includes custom PCB designs for the pump controller circuitry. These files are located in the `/PCB Board Production` folder and contain everything needed for fabrication:
+- **Gerber Files:** All layers required for manufacturing the PCB.
+- **Bill of Materials (BOM):** A complete list of components.
+- **Component Position Files:** Placement and assembly details.
+
+You can send these files directly to a PCB manufacturer (such as JLCPCB) to have the custom boards produced.
+
 ---
 
 ## Software Dependencies
@@ -109,9 +82,9 @@ This project is a multi-part cocktail maker system designed to run on a Raspberr
   `pip install python-dotenv`
 - **Requests**  
   `pip install requests`
-- **OpenAI Python Library** (configured in `assist.py`)  
+- **OpenAI Python Library**  
   `pip install openai`
-- **Pydantic** (if used in your assistant module)  
+- **Pydantic**  
   `pip install pydantic`
 
 ---
@@ -144,6 +117,9 @@ This project is a multi-part cocktail maker system designed to run on a Raspberr
    - Ensure `tipsy.png` is in the project root.  
    - Place your cocktail logo images in the `drink_logos` folder.  
    - Ensure `single.png`, `double.png`, `pouring.png`, and `loading.png` are in the project root (or adjust paths accordingly).
+
+7. **PCB Board Production Files:**  
+   Check the `/PCB Board Production` folder for Gerber files, BOM, and component placement files required for PCB manufacturing. Send these files to your chosen PCB manufacturer (e.g., JLCPCB).
 
 ---
 
@@ -212,5 +188,5 @@ The `controller.py` script will:
 
 ---
 
-This README provides an overview of the system and instructions to set up and run the project on a Raspberry Pi. Adjust details as necessary to fit your exact implementation and hardware setup.
+This README provides an overview of the system, setup instructions, hardware and PCB file details, and troubleshooting tips for your cocktail maker project on a Raspberry Pi.
 
