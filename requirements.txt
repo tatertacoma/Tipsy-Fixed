@@ -1,0 +1,7 @@
+streamlit
+pygame
+RPi.GPIO
+python-dotenv
+requests
+openai
+pydantic
