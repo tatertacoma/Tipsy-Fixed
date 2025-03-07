@@ -93,8 +93,8 @@ You can send these files directly to a PCB manufacturer (such as JLCPCB) to have
 
 1. **Clone the Repository:**  
    ```bash
-   git clone https://your.repo.url
-   cd your-repo-folder
+   git clone https://github.com/Concept-Bytes/Tipsy
+   cd Tipsy
    ```
 
 2. **Install Dependencies:**  
