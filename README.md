@@ -118,9 +118,9 @@ You can send these files directly to a PCB manufacturer (such as JLCPCB) to have
    - Place your cocktail logo images in the `drink_logos` folder.  
    - Ensure `single.png`, `double.png`, `pouring.png`, and `loading.png` are in the project root (or adjust paths accordingly).
 
-7. **PCB Board Production Files:**  
+7. **PCB Board Production Files:** 
    Check the `/PCB Board Production` folder for Gerber files, BOM, and component placement files required for PCB manufacturing. Send these files to your chosen PCB manufacturer (e.g., JLCPCB).
-
+   ![PCB Screenshot](./board.jpg)
 ---
 
 ## Running the Project
