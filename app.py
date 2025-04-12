@@ -9,7 +9,10 @@ from rembg import remove
 from PIL import Image
 
 # Import your controller module
-import controller
+try:
+    import controller
+except ModuleNotFoundError:
+    print('Controller modules not found. Pump control will be disabled')
 
 # Load .env variables
 load_dotenv()
@@ -45,6 +48,13 @@ def load_saved_config():
         except Exception as e:
             st.error(f"Error loading configuration: {e}")
     return {}
+
+def save_config(data):
+    try:
+        with open(CONFIG_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        st.error(f"Error saving configuration: {e}")
 
 def load_cocktails():
     if os.path.exists(COCKTAILS_FILE):
@@ -88,21 +98,21 @@ with tabs[0]:
         else:
             return ""
 
-    # Pump naming: 1-5 in first column, 6-10 in second column
+    # Pump naming: 1-6 in first column, 7-12 in second column
     with col1:
-        for i in range(1, 6):
+        for i in range(1, 7):
             pump_name = f"Pump {i}"
             pump_inputs[pump_name] = st.text_input(
                 label=pump_name,
-                value=get_default(pump_name),
+                value=get_default(pump_name)
             )
 
     with col2:
-        for i in range(6, 11):
+        for i in range(7, 13):
             pump_name = f"Pump {i}"
             pump_inputs[pump_name] = st.text_input(
                 label=pump_name,
-                value=get_default(pump_name),
+                value=get_default(pump_name)
             )
 
     st.markdown("<h3 style='text-align: center;'>Requests for the bartender</h3>", unsafe_allow_html=True)
@@ -111,22 +121,13 @@ with tabs[0]:
     if st.button("Generate Recipes"):
         pump_to_drink = {pump: drink for pump, drink in pump_inputs.items() if drink.strip()}
         # Save the pump configuration to JSON
-        try:
-            with open(CONFIG_FILE, "w") as f:
-                json.dump(pump_to_drink, f, indent=2)
-        except Exception as e:
-            st.error(f"Error saving configuration: {e}")
+        save_config(pump_to_drink)
 
         st.markdown(f"<p style='text-align: center;'>Pump configuration: {pump_to_drink}</p>", unsafe_allow_html=True)
         
         # Ask AI to generate cocktails from these pumps + bartender requests
         cocktails_json = assist.generate_cocktails(pump_to_drink, bartender_requests)
-        try:
-            with open(COCKTAILS_FILE, "w") as f:
-                json.dump(cocktails_json, f, indent=2)
-            st.success("Cocktails JSON saved to cocktails.json")
-        except Exception as e:
-            st.error(f"Error saving cocktails: {e}")
+        save_cocktails(cocktails_json)
         
         st.markdown("<h2 style='text-align: center;'>Generating Cocktail Logos...</h2>", unsafe_allow_html=True)
         image_paths = {}
