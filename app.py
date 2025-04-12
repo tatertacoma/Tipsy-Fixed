@@ -88,9 +88,9 @@ with tabs[0]:
         else:
             return ""
 
-    # Pump naming: 1-5 in first column, 6-10 in second column
+    # Pump naming: 1-6 in first column, 7-12 in second column
     with col1:
-        for i in range(1, 6):
+        for i in range(1, 7):
             pump_name = f"Pump {i}"
             pump_inputs[pump_name] = st.text_input(
                 label=pump_name,
@@ -98,7 +98,7 @@ with tabs[0]:
             )
 
     with col2:
-        for i in range(6, 11):
+        for i in range(7, 13):
             pump_name = f"Pump {i}"
             pump_inputs[pump_name] = st.text_input(
                 label=pump_name,
