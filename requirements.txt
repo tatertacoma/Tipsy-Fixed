@@ -5,3 +5,5 @@ python-dotenv
 requests
 openai
 pydantic
+rembg
+onnxruntime
