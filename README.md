@@ -86,6 +86,10 @@ You can send these files directly to a PCB manufacturer (such as JLCPCB) to have
   `pip install openai`
 - **Pydantic**  
   `pip install pydantic`
+  Requires `numpy<2.0`; on Raspberry Pi 4 (64‑bit) only supported on OS kernel versions ≤6.6.51. Avoid mass‑upgrading numpy or other system software without verifying compatibility.
+
+ 
+ > **Note on ONNX Runtime Compatibility:** This project uses `rembg` for background removal (via ONNX Runtime). ONNX Runtime requires `numpy<2.0`, and on Raspberry Pi 4 (64‑bit) only supports OS kernel versions ≤6.6.51. Avoid mass‑upgrading numpy, the OS kernel, or other system packages without verifying compatibility.
 
 ---
 
