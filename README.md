@@ -189,8 +189,3 @@ The `controller.py` script will:
 ## Acknowledgments
 
 *Mention any libraries, tutorials, or contributors that helped build this project.*
-
----
-
-This README provides an overview of the system, setup instructions, hardware and PCB file details, and troubleshooting tips for your cocktail maker project on a Raspberry Pi.
-
