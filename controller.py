@@ -1,6 +1,6 @@
 # controller.py
 
-DEBUG = False  # Toggle debug mode on/off
+DEBUG = True  # Toggle debug mode on/off
              # If True, no GPIO access, only prints what's happening.
 
 if not DEBUG:
@@ -19,10 +19,11 @@ MOTORS = [
     (13, 6),   # Pump 5
     (26, 19),  # Pump 6
     (20, 21),  # Pump 7
-    (16, 12),  # Pump 8
-    # If you have up to 10 pumps, add them here:
-    # (X, Y),   # Pump 9
-    # (A, B)    # Pump 10
+    (14, 15),  # Pump 8
+    (23, 18),  # Pump 9
+    (25, 23),  # Pump 10
+    (7, 8),    # Pump 11
+    (16, 12),  # Pump 12
 ]
 
 
@@ -58,7 +59,7 @@ def motor_reverse(ia,ib):
         GPIO.output(ia,GPIO.LOW)
         GPIO.output(ib,GPIO.HIGH)
 
-def prime_pumps(duration=10):
+def prime_pumps(duration):
     """
     Primes each pump for `duration` seconds in sequence (one after another).
     """

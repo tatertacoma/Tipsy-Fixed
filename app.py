@@ -174,10 +174,11 @@ with tabs[1]:
     st.title("Settings")
 
     st.subheader("Prime Pumps")
+    primetime = st.number_input("Priming Time", step=1, value=10)
     if st.button("Prime Pumps"):
-        st.info("Priming all pumps for 10 seconds each...")
+        st.info(f"Priming all pumps for {primetime} seconds each...")
         try:
-            controller.prime_pumps(duration=10)
+            controller.prime_pumps(duration=primetime)
             st.success("Pumps primed successfully!")
         except Exception as e:
             st.error(f"Error priming pumps: {e}")

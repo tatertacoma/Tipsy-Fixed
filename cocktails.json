@@ -1,73 +1,81 @@
 {
   "cocktails": [
     {
-      "normal_name": "Vodka Cola",
-      "fun_name": "Fizzy Bubbly Bliss",
+      "normal_name": "Rum Sour",
+      "fun_name": "Rumbelievable",
+      "ingredients": {
+        "White Rum": "2 oz",
+        "Lemon Juice": "1 oz",
+        "Simple Syrup": "0.5 oz"
+      }
+    },
+    {
+      "normal_name": "Tropical Vodka Breezer",
+      "fun_name": "Sunkissed Splash",
       "ingredients": {
         "Vodka": "2 oz",
-        "Coke": "4 oz"
+        "Grenadine": "0.5 oz",
+        "Lime Juice": "1 oz"
       }
     },
     {
-      "normal_name": "Whiskey Sour",
-      "fun_name": "Sour Power",
+      "normal_name": "Classic Whisky Sour",
+      "fun_name": "Whisker Riot",
       "ingredients": {
         "Whisky": "2 oz",
-        "Simple Syrup": "0.5 oz",
-        "Lime Juice": "0.75 oz",
-        "Bitters": "2 dashes"
+        "Lemon Juice": "1 oz",
+        "Simple Syrup": "0.5 oz"
       }
     },
     {
-      "normal_name": "Gin and Tonic",
-      "fun_name": "Tonic Twist",
+      "normal_name": "Tequila Sunrise",
+      "fun_name": "Sunset Sipper",
+      "ingredients": {
+        "Tuquila": "2 oz",
+        "Grenadine": "0.5 oz",
+        "Lime Juice": "1 oz"
+      }
+    },
+    {
+      "normal_name": "Gin Fizz",
+      "fun_name": "Fizz Whizz",
       "ingredients": {
         "Gin": "2 oz",
-        "Tonic Water": "4 oz",
-        "Lime Juice": "0.5 oz"
+        "Lemon Juice": "1 oz",
+        "Simple Syrup": "0.5 oz"
       }
     },
     {
-      "normal_name": "Daiquiri",
-      "fun_name": "Tropical Shakedown",
+      "normal_name": "Spiced Rum Punch",
+      "fun_name": "Pirate's Haven",
       "ingredients": {
-        "Rum": "2 oz",
+        "Spiced Rum": "2 oz",
         "Lime Juice": "1 oz",
         "Simple Syrup": "0.5 oz"
       }
     },
     {
-      "normal_name": "Margarita",
-      "fun_name": "Citrus Snap",
+      "normal_name": "Dry Martini",
+      "fun_name": "Shaken & Stirred",
       "ingredients": {
-        "Tequila": "2 oz",
-        "Triple Sec": "1 oz",
-        "Lime Juice": "1 oz"
+        "Dry Vermouth": "1 oz",
+        "Gin": "2 oz"
       }
     },
     {
-      "normal_name": "Tequila Sunrise",
-      "fun_name": "Dawn's Delight",
+      "normal_name": "Cosmopolitan",
+      "fun_name": "Cosmo Queen",
       "ingredients": {
-        "Tequila": "2 oz",
-        "Orange Juice": "4 oz",
-        "Grenadine": "0.5 oz"
+        "Vodka": "1.5 oz",
+        "Triple Sec": "0.5 oz",
+        "Lime Juice": "0.7 oz"
       }
     },
     {
-      "normal_name": "Rum and Coke",
-      "fun_name": "Caribbean Cooler",
+      "normal_name": "Lemon Juice",
+      "fun_name": "Sour Punch",
       "ingredients": {
-        "Rum": "2 oz",
-        "Coke": "4 oz"
-      }
-    },
-    {
-      "normal_name": "Whiskey Highball",
-      "fun_name": "Smooth Operator",
-      "ingredients": {
-        "Whisky": "2 oz",
-        "Coke": "4 oz"
+        "Lemon Juice": "1 oz"
       }
     }
   ]
