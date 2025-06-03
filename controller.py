@@ -1,6 +1,6 @@
 # controller.py
 
-DEBUG = True  # Toggle debug mode on/off
+DEBUG = False  # Toggle debug mode on/off
              # If True, no GPIO access, only prints what's happening.
 
 if not DEBUG:
@@ -8,6 +8,8 @@ if not DEBUG:
 import time
 import os
 import json
+from dotenv import load_dotenv
+
 
 # Define GPIO pins for each motor here (same as your test).
 # Adjust these if needed to match your hardware.
@@ -126,10 +128,8 @@ def make_drink(pump_config_path, recipe, single_or_double="single"):
     factor = 2 if single_or_double.lower() == "double" else 1
 
     # 4) Get the 1oz coefficient (seconds per ounce) from environment or default to 8
-    try:
-        oz_coefficient = float(os.getenv("ONE_OZ_COEFFICIENT", "8"))
-    except ValueError:
-        oz_coefficient = 8.0
+    load_dotenv()
+    oz_coefficient = int(os.getenv("OZ_CALIBRATION"))
 
     setup_gpio()
     try:

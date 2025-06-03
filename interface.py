@@ -3,6 +3,12 @@ import os
 import pygame
 import time
 
+try:
+    import controller
+except ModuleNotFoundError:
+    print('Controller modules not found. Pump control will be disabled for PyGame')
+CONFIG_FILE = "pump_config.json"
+
 def animate_text_zoom(screen, base_text, position, start_size, target_size, duration=300, background=None, current_img=None, image_offset=0):
     """Animate overlay text zooming from a small size to target size."""
     clock = pygame.time.Clock()
@@ -265,9 +271,6 @@ def run_interface():
                         # Animate single logo click
                         if single_logo:
                             animate_logo_click(screen, single_logo, single_rect, base_size=150, target_size=220, duration=150, background=background, current_img=current_img, screen_size=screen_size)
-                        # Write mode selection "single"
-                        with open("selected_mode.txt", "w") as f:
-                            f.write("single")
                         try:
                             pouring_img = pygame.image.load("pouring.png")
                             pouring_img = pygame.transform.scale(pouring_img, screen_size)
@@ -282,13 +285,11 @@ def run_interface():
                             loading_img = None
                         if pouring_img and loading_img:
                             show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec=10, background=background)
+                            controller.make_drink(CONFIG_FILE, drink_name, single_or_double="single")
                     elif double_rect.collidepoint(pos):
                         # Animate double logo click
                         if double_logo:
                             animate_logo_click(screen, double_logo, double_rect, base_size=150, target_size=220, duration=150, background=background, current_img=current_img, screen_size=screen_size)
-                        # Write mode selection "double"
-                        with open("selected_mode.txt", "w") as f:
-                            f.write("double")
                         try:
                             pouring_img = pygame.image.load("pouring.png")
                             pouring_img = pygame.transform.scale(pouring_img, screen_size)
@@ -303,6 +304,7 @@ def run_interface():
                             loading_img = None
                         if pouring_img and loading_img:
                             show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec=30, background=background)
+                            controller.make_drink(CONFIG_FILE, drink_name, single_or_double="double")
                     dragging = False
                     drag_offset = 0
                     continue  # Skip further swipe handling.

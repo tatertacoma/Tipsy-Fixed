@@ -12,10 +12,11 @@ from PIL import Image
 try:
     import controller
 except ModuleNotFoundError:
-    print('Controller modules not found. Pump control will be disabled')
+    print('Controller modules not found. Pump control will be disabled for WebUI')
 
 # Load .env variables
 load_dotenv()
+clearkey = False
 
 # ---------- API KEY SETUP ----------
 if not os.getenv("OPENAI_API_KEY") and "openai_api_key" not in st.session_state:
@@ -24,6 +25,15 @@ if not os.getenv("OPENAI_API_KEY") and "openai_api_key" not in st.session_state:
     if st.button("Submit"):
         st.session_state["openai_api_key"] = key_input
         set_key(".env", "OPENAI_API_KEY", key_input)
+        st.rerun()
+    st.stop()
+
+# Motor Calibration
+if not os.getenv("OZ_CALIBRATION"):
+    st.title("Enter Motor Calibration")
+    key_input = st.number_input("Seconds for 1oz of Liquid", value=8)
+    if st.button("Submit"):
+        set_key(".env", "OZ_CALIBRATION", str(key_input))
         st.rerun()
     st.stop()
 
@@ -192,6 +202,18 @@ with tabs[1]:
             st.success("All pumps reversed (cleaned).")
         except Exception as e:
             st.error(f"Error cleaning pumps: {e}")
+
+    # Motor Calibration
+
+    # Clear OpenAI Key
+    st.subheader("Clear Environment Variables")
+    st.write("Clears OpenAI API Key and Calibration Setting")
+    if not clearkey:
+        if st.button("Clear API Key"):
+            set_key(".env", "OPENAI_API_KEY", "")
+            clearkey = True
+        else:
+            st.write("Restart to Re-enter Key")
 
 # ================ TAB 3: Cocktail Menu ================
 with tabs[2]:
