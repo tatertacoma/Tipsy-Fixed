@@ -2,11 +2,15 @@
 import os
 import pygame
 import time
+import json
+import threading
+
+COCKTAILS_FILE = "cocktails.json"
 
 try:
     import controller
 except ModuleNotFoundError:
-    print('Controller modules not found. Pump control will be disabled for PyGame')
+    print('Controller modules not found. Pump control will be disabled for Interface')
 CONFIG_FILE = "pump_config.json"
 
 def animate_text_zoom(screen, base_text, position, start_size, target_size, duration=300, background=None, current_img=None, image_offset=0):
@@ -177,6 +181,19 @@ def show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec, bac
         pygame.display.flip()
         clock.tick(60)
 
+def parse_drink(filename):
+    base_name = os.path.splitext(filename)[0].replace("_", " ").lower()
+
+    with open(COCKTAILS_FILE, "r") as file:
+        data = json.load(file)
+
+    for cocktail in data.get("cocktails", []):
+        if cocktail["normal_name"].lower() == base_name:
+            return cocktail
+
+    return None
+
+
 def run_interface():
     pygame.init()
     screen = pygame.display.set_mode((720, 720))
@@ -246,8 +263,8 @@ def run_interface():
     drag_offset = 0
     clock = pygame.time.Clock()
 
-    normal_text_size = 72  
-    text_position = (screen_width // 2, int(screen_height * 0.85))
+    normal_text_size = 60
+    text_position = (screen_width // 2, int(screen_height * 0.81))
 
     running = True
     while running:
@@ -277,15 +294,10 @@ def run_interface():
                         except Exception as e:
                             print("Error loading pouring.png:", e)
                             pouring_img = None
-                        try:
-                            loading_img = pygame.image.load("loading.png")
-                            loading_img = pygame.transform.scale(loading_img, (720,720))
-                        except Exception as e:
-                            print("Error loading loading.png:", e)
-                            loading_img = None
-                        if pouring_img and loading_img:
-                            show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec=10, background=background)
-                            controller.make_drink(CONFIG_FILE, drink_name, single_or_double="single")
+                        if pouring_img:
+                            screen.blit(pouring_img, (0, 0))
+                            controller.make_drink(CONFIG_FILE, parse_drink(current_filename), "single")
+                            #show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec=10, background=background)
                     elif double_rect.collidepoint(pos):
                         # Animate double logo click
                         if double_logo:
@@ -303,8 +315,9 @@ def run_interface():
                             print("Error loading loading.png:", e)
                             loading_img = None
                         if pouring_img and loading_img:
-                            show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec=30, background=background)
-                            controller.make_drink(CONFIG_FILE, drink_name, single_or_double="double")
+                            screen.blit(pouring_img, (0, 0))
+                            controller.make_drink(CONFIG_FILE, parse_drink(current_filename), "double")
+                            #show_pouring_and_loading(screen, pouring_img, loading_img, duration_sec=30, background=background)
                     dragging = False
                     drag_offset = 0
                     continue  # Skip further swipe handling.

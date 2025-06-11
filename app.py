@@ -16,7 +16,6 @@ except ModuleNotFoundError:
 
 # Load .env variables
 load_dotenv()
-clearkey = False
 
 # ---------- API KEY SETUP ----------
 if not os.getenv("OPENAI_API_KEY") and "openai_api_key" not in st.session_state:
@@ -31,7 +30,7 @@ if not os.getenv("OPENAI_API_KEY") and "openai_api_key" not in st.session_state:
 # Motor Calibration
 if not os.getenv("OZ_CALIBRATION"):
     st.title("Enter Motor Calibration")
-    key_input = st.number_input("Seconds for 1oz of Liquid", value=8)
+    key_input = st.number_input("Seconds for 1oz of Liquid (Leave default if not yet known)", value=8)
     if st.button("Submit"):
         set_key(".env", "OZ_CALIBRATION", str(key_input))
         st.rerun()
@@ -204,16 +203,16 @@ with tabs[1]:
             st.error(f"Error cleaning pumps: {e}")
 
     # Motor Calibration
+    st.subheader("Motor Calibration")
+    key_input = st.number_input("Seconds per 1oz", value=int(os.getenv("OZ_CALIBRATION")))
+    if st.button("Save Motor Calibration"):
+        set_key(".env", "OZ_CALIBRATION", str(key_input))
 
     # Clear OpenAI Key
-    st.subheader("Clear Environment Variables")
-    st.write("Clears OpenAI API Key and Calibration Setting")
-    if not clearkey:
-        if st.button("Clear API Key"):
-            set_key(".env", "OPENAI_API_KEY", "")
-            clearkey = True
-        else:
-            st.write("Restart to Re-enter Key")
+    st.subheader("(Re)set OpenAI API Key")
+    ai_key = st.text_input("OpenAI API Key")
+    if st.button("Save API Key"):
+        set_key(".env", "OPENAI_API_KEY", ai_key)
 
 # ================ TAB 3: Cocktail Menu ================
 with tabs[2]:

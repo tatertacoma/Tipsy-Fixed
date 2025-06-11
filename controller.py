@@ -106,6 +106,8 @@ def make_drink(pump_config_path, recipe, single_or_double="single"):
 
     In debug mode, only prints messages instead of driving motors.
     """
+    if DEBUG:
+        print(pump_config_path, recipe, single_or_double)
     # 1) Load the pump config dictionary, e.g. {"Pump 1": "vodka", "Pump 2": "gin", ...}
     if not os.path.exists(pump_config_path):
         print(f"pump_config file not found: {pump_config_path}")

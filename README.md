@@ -1,18 +1,19 @@
 # *What this fork Adds...*
 This fork adds a handful of fixed to the original code...
 
-1. Removed god awful swiping "animation" (where it slowly fades out in the background)
+1. Removed awful swiping "animation" (where it slowly fades out in the background)
 2. Made Selected Drink image smaller to greatly reduce chance of it overlapping
 3. Remade background image so it's not as crap looking
 4. Made the screen display actually work and dispense drinks
 5. Added the missing pin info in `controller.py` for pumps 8-12 (for use with premade PCB)
-6. Added box to adjust time to Prime Pumps (Instead of having to edit the hard-coded value (of 8 seconds))
+6. Added box to adjust time to Prime Pumps (Instead of a hard-coded 10 seconds)
+7. Added box to adjust oz calibration (Instead of having to edit the hard-coded value of 8 seconds/1oz)
 
-**Some Notes I feel should also be mentioned (that were not by the original creator):** - If you don't know what streamlit it, it's a WebUI creator library. (So there is a WebUI that you can use to modify some things and drinks)
+**Some Notes I feel should also be mentioned (that were not by the original creator):** - If you don't know what streamlit is, it's a WebUI creator library. (So there is a WebUI that you can use to modify some things and drinks)
  - The Ai feature uses OpenAI GPT-4o-mini to generate cocktail recipies and dall-e-3 to generate images.
  - It generates recipies and images when you tell it to in the streamlit webui (Note: It does NOT erase old ones, so it will add the newly created ones alongside the old drinks. If you want to remove (a) drink(s) you have to manually edit the files)
  - It costs roughly 35¢ for every time you generate recipies/images using Ai, and OpenAI has a minimum loading cost of 5$
- - The RPi needs to be connected to the internet, BTW, to use AI and WebUI features
+ - The RPi needs to be connected to a network for the Streamlit WebUI to work and internet for AI features to function
 
 # Tipsy the AI Cocktail Maker Project
 
